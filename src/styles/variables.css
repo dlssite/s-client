@@ -1,0 +1,217 @@
+:root {
+    /* ========================================
+     COLOR PALETTE - Sanctyr Theme
+     ======================================== */
+
+    /* Void (Background) Colors */
+    --color-void-950: #030303;
+    --color-void-900: #0a0a0a;
+    --color-void-800: #141414;
+    --color-void-700: #1f1f1f;
+    --color-void-600: #2a2a2a;
+    --color-void-500: #3d3d3d;
+
+    /* Crimson (Primary Accent) Colors */
+    --color-crimson-900: #450a0a;
+    --color-crimson-800: #7f1d1d;
+    --color-crimson-700: #991b1b;
+    --color-crimson-600: #b91c1c;
+    --color-crimson-500: #dc2626;
+    --color-crimson-400: #ef4444;
+    --color-crimson-300: #f87171;
+
+    /* Gold (Secondary Accent) Colors */
+    --color-gold-900: #78350f;
+    --color-gold-800: #92400e;
+    --color-gold-700: #b45309;
+    --color-gold-600: #d97706;
+    --color-gold-500: #f59e0b;
+    --color-gold-400: #fbbf24;
+    --color-gold-300: #fcd34d;
+
+    /* Primary (Ember/Orange) Colors */
+    --color-primary-900: #7c2d12;
+    --color-primary-800: #9a3412;
+    --color-primary-700: #c2410c;
+    --color-primary-600: #ea580c;
+    --color-primary-500: #f97316;
+    --color-primary-400: #fb923c;
+    --color-primary-300: #fdba74;
+
+    /* Text Colors */
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #d1d1d1;
+    --color-text-muted: #888888;
+    --color-text-disabled: #444444;
+
+    /* Immersive Colors */
+    --color-void-deep: #020202;
+    --color-heat-glow: #ff4d00;
+    --color-soul-blue: #00e5ff;
+
+    /* ========================================
+     SPACING SCALE
+     ======================================== */
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-7: 1.75rem;
+    /* 28px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+    --space-20: 5rem;
+    /* 80px */
+    --space-24: 6rem;
+    /* 96px */
+
+    /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+    /* Font Families */
+    --font-primary: 'Cinzel', serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-display: 'Cinzel', serif;
+
+    /* Font Sizes */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+    --text-6xl: 3.75rem;
+    /* 60px */
+
+    /* Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+
+    /* Letter Spacing */
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    /* ========================================
+     BORDER RADIUS
+     ======================================== */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+
+    /* ========================================
+     SHADOWS & GLOWS
+     ======================================== */
+
+    /* Standard Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+    /* Tactical Glows (v9) */
+    --glow-gold-sm: 0 0 10px rgba(245, 158, 11, 0.3);
+    --glow-gold-md: 0 0 20px rgba(245, 158, 11, 0.4);
+    --glow-crimson-sm: 0 0 10px rgba(220, 38, 38, 0.3);
+    --glow-primary-sm: 0 0 10px rgba(249, 115, 22, 0.3);
+
+    /* Aura Effects (Layered Glows) */
+    --aura-crimson: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2);
+    --aura-gold: 0 0 20px rgba(245, 158, 11, 0.4), 0 0 40px rgba(245, 158, 11, 0.2);
+    --aura-primary: 0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
+    --aura-soul: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.2);
+
+    /* Clean Borders */
+    --border-ritual: 1px solid rgba(255, 255, 255, 0.05);
+    --border-ritual-active: 1px solid var(--color-gold-500);
+
+    /* ========================================
+     TRANSITIONS & ANIMATIONS
+     ======================================== */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Gradients */
+    --gradient-void: radial-gradient(circle at center, #0a0a0a 0%, #030303 100%);
+    --gradient-heat: linear-gradient(135deg, #ff4d00 0%, #dc2626 100%);
+    --gradient-ember: linear-gradient(135deg, var(--color-gold-500) 0%, var(--color-primary-600) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    --gradient-ritual: linear-gradient(to bottom, rgba(20, 20, 20, 0.95), rgba(5, 5, 5, 0.98));
+
+    /* ========================================
+     BREAKPOINTS (for reference in media queries)
+     ======================================== */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+
+    /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+
+    /* ========================================
+     GLASSMORPHISM
+     ======================================== */
+    --glass-bg: rgba(20, 20, 20, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(12px);
+}

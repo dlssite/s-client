@@ -1,0 +1,972 @@
+/* ========================================
+   CINEMATIC LOADING RITUAL (v6)
+   ======================================== */
+.profile-loading-ritual {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #020202;
+    overflow: hidden;
+}
+
+/* Atmospheric Smoke & Noise */
+.ritual-background-fx {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(138, 28, 28, 0.15) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* The Vessel */
+.ritual-vessel {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.essence-flame {
+    width: 180px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+    animation: floating 4s ease-in-out infinite;
+}
+
+.essence-glow {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 2;
+    animation: breathing 3s ease-in-out infinite;
+}
+
+/* Status Ritual */
+.materialization-status {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: -20px;
+    z-index: 2;
+}
+
+.burning-bar-container {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
+
+.burning-bar-fill {
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(90deg, #dc2626, #f97316);
+    box-shadow: 0 0 10px #f97316;
+    border-radius: var(--radius-full);
+    animation: loading-fill 3s ease-in-out infinite alternate;
+}
+
+.ritual-text {
+    font-family: var(--font-display);
+    color: var(--color-gold-500);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .ritual-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+    }
+}
+
+/* Animations */
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+@keyframes loading-fill {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ========================================
+   PUBLIC PROFILE - ORIGINAL STYLES
+   (DO NOT REMOVE OR MODIFY)
+   ======================================== */
+.public-profile-root {
+    background: #050505;
+    min-height: 100vh;
+    padding: 24px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-primary);
+}
+
+.public-profile-wrapper {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* BASE CONTAINER STYLE */
+.profile-container {
+    background: #0a0a0b;
+    border-radius: 20px;
+    border: 1px solid #1a1a1c;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* SECTION 1: MAIN IDENTITY */
+.main-identity {
+    padding-bottom: 16px;
+}
+
+.profile-header-banner {
+    height: 120px;
+    position: relative;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-glaze {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, #0a0a0b 0%, transparent 100%);
+}
+
+.banner-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--color-gold-400);
+    opacity: 0.9;
+    letter-spacing: -1px;
+    line-height: 0.9;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.identity-content {
+    padding: 0 20px;
+    margin-top: -40px;
+    position: relative;
+}
+
+.identity-top-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.avatar-shield {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-main {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #0a0a0b;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.avatar-frame-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    z-index: 2;
+    pointer-events: none;
+    object-fit: contain;
+}
+
+.online-pulse {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 14px;
+    height: 14px;
+    background: #4ade80;
+    border: 3px solid #0a0a0b;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.speech-bubble-bio {
+    margin-top: 10px;
+    background: #1e1e21;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid #2a2a2e;
+    position: relative;
+    flex-grow: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.bubble-beak {
+    position: absolute;
+    left: -8px;
+    top: 16px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #1e1e21;
+}
+
+.speech-bubble-bio p {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #d1d1d1;
+}
+
+.identity-details {
+    margin-top: 12px;
+}
+
+.user-display-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.user-metadata {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+    font-size: 0.85rem;
+}
+
+.user-metadata .handle {
+    color: #9ca3af;
+}
+
+.user-metadata .elite-title {
+    color: var(--color-gold-400);
+}
+
+.special-tag-inline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #d63384;
+    font-weight: 500;
+}
+
+.dynamic-role-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.role-tag-pill {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.role-tag-pill.nation {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--color-crimson-400);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.role-tag-pill.special {
+    background: rgba(214, 51, 132, 0.1);
+    color: #d63384;
+    border: 1px solid rgba(214, 51, 132, 0.2);
+}
+
+.role-tag-pill.rank-essence {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--color-gold-400);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.ritual-achievements {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.icon-orb {
+    width: 28px;
+    height: 28px;
+    background: #161618;
+    border: 1px solid #2a2a2e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.icon-orb:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-gold-500);
+}
+
+.icon-orb.silver {
+    color: #e2e8f0;
+}
+
+.icon-orb.crimson {
+    color: #ef4444;
+}
+
+.icon-orb.purple {
+    color: #a855f7;
+}
+
+.icon-orb.gold {
+    color: #fbbf24;
+}
+
+/* MINI SECTIONS */
+.mini-section {
+    padding: 12px 20px;
+}
+
+.container-label {
+    margin: 0 0 10px;
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.scroller-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+}
+
+.scroller-row::-webkit-scrollbar {
+    display: none;
+}
+
+.stat-tile {
+    flex: 0 0 160px;
+    background: #111113;
+    border: 1px solid #1f1f22;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+.stat-tile:hover {
+    background: #161618;
+    border-color: #333;
+}
+
+.box-icon-shell {
+    width: 34px;
+    height: 34px;
+    background: #1a1a1c;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+}
+
+.box-icon-shell.primary {
+    color: var(--color-primary-400);
+}
+
+.tile-label,
+.box-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-subtitle {
+    font-size: 0.7rem;
+    color: #6b7280;
+}
+
+/* BOT GALLERY SECTION */
+.bot-gallery-container {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.bot-scroller-row {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 4px;
+    snap-type: x mandatory;
+}
+
+.bot-scroller-row::-webkit-scrollbar {
+    display: none;
+}
+
+.bot-card {
+    flex: 0 0 100%;
+    padding: 16px 20px;
+    snap-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bot-card.dormant {
+    opacity: 0.7;
+    filter: grayscale(0.8);
+    border-style: dashed;
+    border-color: #2a2a2e;
+}
+
+.bot-data-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.bot-data-header h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--color-crimson-500);
+    letter-spacing: 0.5px;
+}
+
+.sync-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #4ade80;
+    letter-spacing: 1px;
+}
+
+.sync-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #4ade80;
+}
+
+.bot-stats-sleek-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.sleek-pill {
+    background: #0d0d0f;
+    border: 1px solid #1f1f22;
+    padding: 10px 16px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sleek-pill.full-width {
+    grid-column: span 2;
+}
+
+.wallet-box {
+    background: linear-gradient(135deg, #0d0d0f 0%, #151518 100%);
+    border-color: rgba(251, 191, 36, 0.15);
+}
+
+.wallet-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 4px;
+}
+
+.wallet-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.wallet-stat .sub-label {
+    font-size: 0.55rem;
+    color: #4b5563;
+    letter-spacing: 1px;
+}
+
+.wallet-sep {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sleek-pill .label {
+    font-size: 0.6rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.sleek-pill .value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.value.crimson {
+    color: var(--color-crimson-400);
+}
+
+.value.gold {
+    color: var(--color-gold-400);
+}
+
+.value.silver {
+    color: #94a3b8;
+}
+
+
+.value.gray {
+    color: #4b5563;
+}
+
+.dot.gray {
+    background: #374151;
+    box-shadow: none;
+}
+
+.sleek-shroud {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.4);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.shroud-label {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: #374151;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+/* FOOTER */
+.ritual-footer {
+    padding: 30px 0 20px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #1a1a1c;
+}
+
+/* ERROR STATE */
+.profile-error {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #050505;
+    color: var(--color-crimson-500);
+}
+
+/* ========================================
+   THEME RITUALS (v1)
+   ======================================== */
+
+/* MINIMALIST OVERRIDES */
+.theme-minimalist .profile-container {
+    background: #080808;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.theme-minimalist .banner-text {
+    display: none;
+}
+
+.theme-minimalist .banner-glaze {
+    background: linear-gradient(0deg, #080808 0%, transparent 100%);
+}
+
+.theme-minimalist .speech-bubble-bio {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.theme-minimalist .bubble-beak {
+    display: none;
+}
+
+.theme-minimalist .avatar-main {
+    border-color: #111;
+}
+
+.theme-minimalist .role-tag-pill {
+    background: #111;
+    border: none;
+    color: #888;
+}
+
+.theme-minimalist .stat-tile {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.theme-minimalist .icon-orb {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   LUXURY RITUALS (Role-Locked)
+   ======================================== */
+
+/* ========================================
+   HIGH-END LUXURY RITUALS (Redesign)
+   ======================================== */
+
+/* CELESTIAL RITUAL (Special Tier) - Glass & Aurora */
+.theme-celestial .profile-container {
+    background: rgba(13, 17, 23, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(56, 189, 248, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-celestial .profile-container::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+    animation: celestial-aurora 15s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes celestial-aurora {
+    0% {
+        transform: translate(-10%, -10%);
+    }
+
+    100% {
+        transform: translate(10%, 10%);
+    }
+}
+
+.theme-celestial .identity-name {
+    background: linear-gradient(135deg, #fff 0%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.theme-celestial .stat-tile {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+}
+
+/* ASTRAL RITUAL (Elite Tier) - Cosmic Depth & Gradient Borders */
+.theme-astral .profile-container {
+    background: #020617;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#020617, #020617), linear-gradient(135deg, #6366f1, #f59e0b);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 0 60px rgba(99, 102, 241, 0.15);
+}
+
+.theme-astral .profile-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.1), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.05), transparent 40%);
+    pointer-events: none;
+}
+
+.theme-astral .identity-name {
+    background: linear-gradient(135deg, #a5b4fc 0%, #fde68a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.theme-astral .icon-orb {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(165, 180, 252, 0.3);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+}
+
+/* VOID SOVEREIGN RITUAL (Eternal Queen Tier) - Regal Silk & Conic Gold */
+.theme-void-sovereign .profile-container {
+    background: #000;
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+        conic-gradient(from 0deg, #d4af37, #fde68a, #d4af37, #926239, #d4af37);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    animation: sovereign-border-spin 12s linear infinite;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 100px rgba(212, 175, 55, 0.1);
+}
+
+@keyframes sovereign-border-spin {
+    from {
+        background-image: linear-gradient(#000, #000), conic-gradient(from 0deg, #d4af37, #fde68a, #d4af37, #926239, #d4af37);
+    }
+
+    to {
+        background-image: linear-gradient(#000, #000), conic-gradient(from 360deg, #d4af37, #fde68a, #d4af37, #926239, #d4af37);
+    }
+}
+
+/* Glass Shine Sweep Effect */
+.theme-void-sovereign .profile-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0),
+            transparent);
+    transform: skewX(-25deg);
+    animation: sovereign-shine 8s ease-in-out infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@keyframes sovereign-shine {
+    0% {
+        left: -150%;
+    }
+
+    20% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+.theme-void-sovereign .profile-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05), transparent 70%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Glass Shine Sweep Effect */
+.theme-void-sovereign .profile-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0) 20%,
+            rgba(255, 215, 0, 0.1) 50%,
+            rgba(255, 255, 255, 0) 80%,
+            transparent);
+    transform: skewX(-25deg);
+    animation: sovereign-shine 8s ease-in-out infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+
+@keyframes sovereign-shine {
+    0% {
+        left: -150%;
+    }
+
+    20% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+.theme-void-sovereign .identity-name {
+    font-family: var(--font-display);
+    background: linear-gradient(135deg, #fde68a 0%, #d4af37 50%, #fde68a 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: sovereign-text-shimmer 4s linear infinite;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-weight: 900;
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+}
+
+@keyframes sovereign-text-shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.theme-void-sovereign .avatar-shield {
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    width: 86px;
+    height: 86px;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.4), inset 0 0 30px rgba(212, 175, 55, 0.2);
+    overflow: visible;
+}
+
+.theme-void-sovereign .avatar-main {
+    border: none;
+    border-radius: 50%;
+    z-index: 2;
+    mask-image: radial-gradient(circle, black 70%, transparent 100%);
+}
+
+.theme-void-sovereign .avatar-frame-overlay {
+    z-index: 5;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+/* Ensure no square containers */
+.theme-void-sovereign .avatar-shield-container,
+.theme-void-sovereign .avatar-wrapper {
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+}
+
+.theme-void-sovereign .role-tag-pill {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #fde68a;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.theme-void-sovereign .stat-tile {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.02);
+}

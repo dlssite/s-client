@@ -1,0 +1,26 @@
+.s-card {
+    background: var(--color-void-800);
+    border: 1px solid var(--color-void-700);
+    border-radius: var(--space-2);
+    padding: var(--space-6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: border-color var(--duration-slow) var(--ease-ritual), box-shadow var(--duration-slow) var(--ease-ritual);
+    position: relative;
+    overflow: hidden;
+}
+
+.s-card:hover {
+    border-color: var(--color-gold-900);
+    box-shadow: var(--glow-gold);
+}
+
+.s-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-crimson-500), transparent);
+    opacity: 0.5;
+}

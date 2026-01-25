@@ -1,0 +1,89 @@
+.profile-settings {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.settings-header {
+    margin-bottom: var(--space-8);
+}
+
+.settings-title {
+    font-size: 2rem;
+    color: var(--color-gold-500);
+    margin-bottom: var(--space-2);
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.form-section {
+    background: var(--color-void-800);
+    padding: var(--space-6);
+    border-radius: var(--space-2);
+    border: 1px solid var(--color-void-700);
+}
+
+.form-section h3 {
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-4);
+    font-size: 1.2rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: flex-end;
+}
+
+.save-status {
+    padding: var(--space-3);
+    border-radius: var(--space-1);
+    text-align: center;
+    margin-bottom: var(--space-4);
+}
+
+.save-status.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.save-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--color-crimson-500);
+    border: 1px solid var(--color-crimson-500);
+}
+
+.vanity-link-box {
+    margin-top: 8px;
+    padding: 12px;
+    background: var(--color-void-950);
+    border: 1px solid var(--color-void-700);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vanity-link-box:hover {
+    border-color: var(--color-gold-600);
+    background: rgba(255, 215, 0, 0.05);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+}
+
+.vanity-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.vanity-url {
+    font-size: 0.9rem;
+    color: var(--color-gold-500);
+    font-family: var(--font-mono);
+}

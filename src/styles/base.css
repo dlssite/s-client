@@ -1,0 +1,227 @@
+/* ========================================
+   IMPORT DESIGN SYSTEM
+   ======================================== */
+@import './variables.css';
+@import './animations.css';
+@import './utilities.css';
+
+/* ========================================
+   MODERN RESET
+   ======================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: var(--color-void-deep);
+    background-image:
+        radial-gradient(circle at 50% -20%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+        var(--gradient-void);
+    background-attachment: fixed;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    line-height: var(--leading-normal);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    mix-blend-mode: soft-light;
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   TYPOGRAPHY DEFAULTS
+   ======================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-normal);
+    letter-spacing: 0.1em;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: var(--text-3xl);
+    letter-spacing: 0.15em;
+}
+
+h2 {
+    font-size: var(--text-2xl);
+    letter-spacing: 0.12em;
+}
+
+h3 {
+    font-size: var(--text-xl);
+    letter-spacing: 0.1em;
+}
+
+/* Mobile Typography Scaling */
+@media (max-width: 767px) {
+    h1 {
+        font-size: var(--text-xl);
+        letter-spacing: 0.1em;
+    }
+
+    h2 {
+        font-size: var(--text-lg);
+        letter-spacing: 0.08em;
+    }
+
+    h3 {
+        font-size: var(--text-base);
+        letter-spacing: 0.05em;
+    }
+}
+
+p {
+    margin-bottom: var(--space-4);
+    line-height: var(--leading-relaxed);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+a:hover {
+    color: var(--color-gold-400);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-void-950);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-void-700);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-base);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-crimson-900);
+    box-shadow: var(--glow-crimson-sm);
+}
+
+/* ========================================
+   SELECTION STYLING
+   ======================================== */
+::selection {
+    background-color: var(--color-crimson-600);
+    color: var(--color-text-primary);
+}
+
+::-moz-selection {
+    background-color: var(--color-crimson-600);
+    color: var(--color-text-primary);
+}
+
+/* ========================================
+   FOCUS STYLES (Accessibility)
+   ======================================== */
+:focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   IMAGE DEFAULTS
+   ======================================== */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.text-gold {
+    color: var(--color-gold-500);
+}
+
+.text-crimson {
+    color: var(--color-crimson-500);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--space-6);
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 var(--space-8);
+    }
+}

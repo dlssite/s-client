@@ -1,0 +1,148 @@
+.identity-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: var(--gradient-ritual);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: visible;
+    transition: all var(--transition-slow);
+}
+
+.identity-header:hover {
+    border-color: rgba(220, 38, 38, 0.3);
+}
+
+@media (min-width: 768px) {
+    .identity-header {
+        flex-direction: row;
+        padding: var(--space-10);
+        gap: var(--space-10);
+    }
+}
+
+/* ========================================
+   SOUL AURA
+   ======================================== */
+.identity-avatar-container {
+    position: relative;
+    flex-shrink: 0;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .identity-avatar-container {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.identity-flame-container {
+    position: absolute;
+    inset: -20px;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.identity-avatar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    border: 3px solid var(--color-crimson-600);
+    object-fit: cover;
+    z-index: 1;
+    background: var(--color-void-deep);
+}
+
+@media (min-width: 768px) {
+    .identity-avatar {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.identity-avatar-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 124%;
+    height: 124%;
+    z-index: 2;
+    pointer-events: none;
+    object-fit: contain;
+}
+
+/* ========================================
+   CITIZEN INFO
+   ======================================== */
+.identity-info {
+    flex: 1;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .identity-info {
+        text-align: left;
+    }
+}
+
+.identity-name {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-text-primary);
+    letter-spacing: 0.1em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.identity-title {
+    font-size: 9px;
+    color: var(--color-gold-500);
+    font-weight: var(--font-bold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+}
+
+/* ========================================
+   META BADGES
+   ======================================== */
+.identity-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .identity-meta {
+        justify-content: flex-start;
+    }
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    font-size: 9px;
+    font-weight: var(--font-bold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+}
+
+.meta-icon {
+    color: var(--color-crimson-500);
+}

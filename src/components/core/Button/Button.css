@@ -1,0 +1,50 @@
+.s-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--space-1);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all var(--duration-slow) var(--ease-ritual);
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+/* Primary: Crimson Glow */
+.s-btn--primary {
+    background: rgba(138, 28, 28, 0.1);
+    border-color: var(--color-crimson-500);
+    color: var(--color-crimson-500);
+    box-shadow: 0 0 10px rgba(138, 28, 28, 0.1);
+}
+
+.s-btn--primary:hover {
+    background: var(--color-crimson-500);
+    color: var(--color-text-primary);
+    box-shadow: var(--glow-crimson);
+}
+
+/* Secondary: Gold - Prestige */
+.s-btn--secondary {
+    border-color: var(--color-gold-500);
+    color: var(--color-gold-500);
+}
+
+.s-btn--secondary:hover {
+    background: var(--color-gold-500);
+    color: var(--color-void-950);
+    box-shadow: var(--glow-gold);
+}
+
+.s-btn--ghost {
+    color: var(--color-text-secondary);
+}
+
+.s-btn--ghost:hover {
+    color: var(--color-text-primary);
+}
