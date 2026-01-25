@@ -12,6 +12,7 @@ import { ProfileSettings } from './pages/settings/ProfileSettings';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthCallback } from './pages/auth/AuthCallback';
 import { PublicProfile } from './pages/profile/PublicProfile';
+import { NotFound } from './pages/NotFound';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
 
         <Route path="/:username" element={<PublicProfile />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
+
+        {/* Catch-all 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
