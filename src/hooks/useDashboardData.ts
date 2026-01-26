@@ -1,10 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { authService } from '../services/auth';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+import api from '../services/api';
 
 export interface DashboardData {
+    // ... existing interface ...
     identity: {
         name: string;
         username: string;
@@ -59,12 +57,7 @@ export interface DashboardData {
 }
 
 const fetchDashboardData = async (): Promise<DashboardData> => {
-    const token = authService.getToken();
-    const response = await axios.get(`${API_URL}/api/me`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+    const response = await api.get('/api/me');
     return response.data;
 };
 

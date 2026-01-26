@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { AuthLayout } from './components/layouts/AuthLayout/AuthLayout';
 import { Login } from './pages/auth/Login';
 import { Signup } from './pages/auth/Signup';
@@ -11,8 +12,22 @@ import { Apps } from './pages/dashboard/Apps';
 import { ProfileSettings } from './pages/settings/ProfileSettings';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthCallback } from './pages/auth/AuthCallback';
-import { PublicProfile } from './pages/profile/PublicProfile';
 import { NotFound } from './pages/NotFound';
+
+// External Redirect for Public Profiles
+const PublicProfileRedirect = () => {
+  const { username } = useParams();
+  useEffect(() => {
+    const domain = import.meta.env.VITE_VANITY_DOMAIN_PRIMARY || 'sanctyr.me';
+    window.location.href = `https://${domain}/${username}`;
+  }, [username]);
+
+  return (
+    <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-void-950)', color: 'var(--color-gold-500)' }}>
+      Rerouting Essence...
+    </div>
+  );
+};
 
 function App() {
   return (
@@ -36,7 +51,8 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="/:username" element={<PublicProfile />} />
+        {/* Redirect public profiles to the main Site (Sanctyr-Vite) */}
+        <Route path="/:username" element={<PublicProfileRedirect />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Catch-all 404 */}

@@ -65,8 +65,8 @@ export const Login: React.FC = () => {
 
             {/* Hidden form to maintain structure if needed later */}
             <form style={{ display: 'none' }} onSubmit={handleSubmit}>
-                <Input label="Identity" type="email" value={formData.email} onChange={() => { }} />
-                <Input label="Sigil" type="password" value={formData.password} onChange={() => { }} />
+                <Input label="Identity" type="email" value="" onChange={() => { }} />
+                <Input label="Sigil" type="password" value="" onChange={() => { }} />
             </form>
         </Card>
     );
