@@ -24,49 +24,46 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Attempt to refresh token on mount
     useEffect(() => {
         const initAuth = async () => {
-            // Check if we have a token in localStorage first
             const existingToken = authService.getToken();
 
-            // Priority 1: Try to refresh token via HttpOnly Cookie
-            try {
-                console.log('[AuthContext] Attempting auto-login via refresh token cookie...');
-                const response = await api.post('/api/auth/refresh-token', {});
-                const { accessToken, user } = response.data;
+            // Priority 1: If we have an existing token, try to validate it FIRST
+            if (existingToken) {
+                try {
+                    console.log('[AuthContext] Validating existing access token...');
+                    const meResponse = await api.get('/api/me');
+                    if (meResponse.data) {
+                        console.log('[AuthContext] ✅ Existing token is valid');
+                        setUser({
+                            id: meResponse.data.identity?.username || 'user',
+                            email: 'user@sanctyr.space'
+                        });
+                        setIsLoading(false);
+                        return;
+                    }
+                } catch (validateError) {
+                    console.log('[AuthContext] Existing token is invalid, attempting refresh...');
+                }
+            }
 
-                if (accessToken && user) {
-                    console.log('[AuthContext] ✅ Auto-login success for:', user.email);
+            // Priority 2: Try to refresh token via HttpOnly Cookie
+            try {
+                console.log('[AuthContext] Attempting refresh-token via cookie...');
+                const response = await api.post('/api/auth/refresh-token', {});
+                const { accessToken, user: userData } = response.data;
+
+                if (accessToken && userData) {
+                    console.log('[AuthContext] ✅ Refresh success for:', userData.email);
                     authService.setToken(accessToken);
-                    setUser(user);
+                    setUser(userData);
                     setIsLoading(false);
                     return;
                 }
             } catch (error: any) {
-                console.log('[AuthContext] Refresh token failed:', error.response?.data?.message || error.message);
-
-                // If we have an existing token, try to validate it
-                if (existingToken) {
-                    try {
-                        console.log('[AuthContext] Validating existing access token...');
-                        const meResponse = await api.get('/api/me');
-                        if (meResponse.data) {
-                            console.log('[AuthContext] ✅ Existing token is valid');
-                            // Extract user info from the response
-                            setUser({
-                                id: meResponse.data.identity?.username || 'user',
-                                email: 'user@sanctyr.space' // We don't have email in dashboard response
-                            });
-                            setIsLoading(false);
-                            return;
-                        }
-                    } catch (validateError) {
-                        console.log('[AuthContext] Existing token is invalid, clearing...');
-                        authService.removeToken();
-                    }
-                }
+                console.log('[AuthContext] Refresh/Validate failed:', error.response?.data?.message || error.message);
             }
 
-            // Priority 2: No valid session found
-            console.log('[AuthContext] No valid session, user must login');
+            // Priority 3: No valid session found
+            console.log('[AuthContext] No valid session, clearing state');
             authService.removeToken();
             setUser(null);
             setIsLoading(false);

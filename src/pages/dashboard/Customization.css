@@ -329,6 +329,7 @@
     opacity: 0.7;
 }
 
+
 .lock-overlay {
     position: absolute;
     inset: 0;
@@ -387,6 +388,349 @@
     color: white;
 }
 
+/* Shared from Settings: Vanity Links */
+.vanity-link-box {
+    margin-top: 8px;
+    padding: 12px;
+    background: var(--color-void-950);
+    border: 1px solid var(--color-void-700);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vanity-link-box:hover {
+    border-color: var(--color-gold-600);
+    background: rgba(255, 215, 0, 0.05);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+}
+
+.vanity-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.vanity-url {
+    font-size: 0.9rem;
+    color: var(--color-gold-500);
+    font-family: var(--font-mono);
+}
+
+/* Bio/Status Input */
+.bio-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.ritual-textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 8px;
+    color: white;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.ritual-textarea:focus {
+    border-color: var(--color-gold-500);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.1);
+}
+
+.char-count {
+    position: absolute;
+    bottom: -1.25rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Placeholder Contrast Fix */
+.social-row .s-input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Social Connections Overhaul */
+.socials-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-row-container {
+    position: relative;
+    width: 100%;
+    animation: slideInLow 0.3s ease-out;
+}
+
+@keyframes slideInLow {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.social-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.remove-social-btn {
+    width: 46px;
+    /* Match icon trigger width */
+    height: 46px;
+    /* Match standard desktop height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(220, 38, 38, 0.4);
+    border-radius: 10px;
+    background: rgba(220, 38, 38, 0.05);
+    /* Subtle background for balance */
+    transition: all 0.2s ease;
+}
+
+.icon-trigger-btn:hover {
+    border-color: var(--color-gold-500);
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--color-gold-300);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.icon-trigger-btn {
+    width: 46px;
+    height: 46px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    border-radius: 10px;
+    color: var(--color-gold-400);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Enhanced Inputs for Socials */
+.social-row>div:nth-child(2) {
+    flex: 1;
+}
+
+.social-row>div:nth-child(3) {
+    flex: 2;
+}
+
+.social-row .s-input {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    height: 46px;
+    font-size: 0.9rem;
+}
+
+.social-row .s-input:focus {
+    border-color: var(--color-gold-600) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Modal Icon Picker Overhaul */
+.icon-picker-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease-out;
+    padding: 1rem;
+}
+
+.icon-picker-modal-content {
+    background: #0d0d12;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(245, 158, 11, 0.1);
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-gold-500);
+}
+
+.modal-close-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--color-text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(220, 38, 38, 0.2);
+    color: #ef4444;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for modal */
+.modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.icon-category h4 {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1rem;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    gap: 0.75rem;
+}
+
+.icon-option {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-option:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: var(--color-gold-400);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon-option.selected {
+    background: var(--color-gold-500);
+    color: black;
+    border-color: var(--color-gold-400);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+/* Ritual Styled Add Button */
+.add-tether-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 215, 0, 0.03);
+    border: 1px dashed rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    color: var(--color-gold-500);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-tether-btn:hover {
+    background: rgba(255, 215, 0, 0.07);
+    border: 1px solid var(--color-gold-500);
+    border-style: solid;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.15);
+    transform: scale(1.01);
+}
+
+.remove-social-btn:hover {
+    color: #ef4444;
+    background: rgba(220, 38, 38, 0.1);
+}
+
+/* --- MOBILE REFINEMENTS (Specificity Overrides) --- */
 @media (max-width: 768px) {
     .customization-grid {
         grid-template-columns: 1fr;
@@ -399,7 +743,62 @@
     }
 
     .save-ritual-btn {
-        width: 100%;
+        width: 100% !important;
         justify-content: center;
+        white-space: nowrap;
+    }
+
+    /* Balanced Mobile Social Tethers */
+    .social-row {
+        display: grid !important;
+        grid-template-columns: 46px 1fr 40px;
+        grid-template-areas:
+            "icon name name"
+            "url url trash";
+        gap: 0.5rem;
+        padding: 0.75rem;
+        align-items: center;
+    }
+
+    .icon-selector-wrapper {
+        grid-area: icon;
+    }
+
+    /* Realm Name Input */
+    .social-row>div:nth-child(2) {
+        grid-area: name;
+    }
+
+    /* Conduit URL Input */
+    .social-row>div:nth-child(3) {
+        grid-area: url;
+    }
+
+    /* Trash Button */
+    .remove-social-btn {
+        grid-area: trash;
+        width: 42px !important;
+        height: 42px !important;
+        margin: 0;
+    }
+
+    .social-row .s-input {
+        height: 42px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .icon-trigger-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 42px !important;
+        height: 42px !important;
+        padding: 0 !important;
+        margin: 0;
+    }
+
+    .add-tether-btn {
+        padding: 0.75rem !important;
+        font-size: 0.8rem !important;
     }
 }

@@ -36,6 +36,8 @@ export interface DashboardData {
         roles: string[];
         level: number;
         streak: number;
+        weeklyXp: number;
+        totalXp: number;
         messages: number;
         voiceMinutes: number;
         attachmentCount: number;

@@ -19,7 +19,7 @@ export const Analytics: React.FC = () => {
         voiceMinutes: data.nation.voiceMinutes || 0,
         activeStreak: data.nation.streak || 0,
         level: data.nation.level || 1,
-        xpGained: data.identity?.xp?.current || 0,
+        xpGained: data.nation.weeklyXp || 0,
         topChannel: data.analytics?.topChannel || 'None',
         mostActiveDay: data.analytics?.mostActiveDay || 'None',
         weeklyActivity: [
@@ -31,7 +31,9 @@ export const Analytics: React.FC = () => {
             activitySource['saturday'] || 0,
             activitySource['sunday'] || 0,
         ],
-        monthlyGrowth: '+24%'
+        monthlyGrowth: data.nation.totalXp > 0
+            ? `+${Math.round((data.nation.weeklyXp / Math.max(1, data.nation.totalXp - data.nation.weeklyXp)) * 100)}%`
+            : '0%'
     };
 
     // Debug logging (v11)
@@ -240,7 +242,7 @@ export const Analytics: React.FC = () => {
                         <div className="insight-item">
                             <Trophy size={18} className="text-primary" />
                             <div className="insight-content">
-                                <div className="insight-title">XP This Month</div>
+                                <div className="insight-title">XP This Week</div>
                                 <div className="insight-detail">+{stats.xpGained.toLocaleString()} XP</div>
                             </div>
                         </div>

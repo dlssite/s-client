@@ -50,7 +50,7 @@ export const DashboardLayout: React.FC = () => {
 
             {/* Mobile Navigation Dock (Visible only on Mobile via CSS) */}
             <nav className="mobile-bottom-nav">
-                {navItems.slice(0, 5).map((item) => (
+                {navItems.filter(item => item.label !== 'Settings').map((item) => (
                     <Link
                         key={item.path}
                         to={item.path}
