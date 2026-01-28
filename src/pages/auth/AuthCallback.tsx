@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { PremiumLoader } from '../../components/core/Loader/PremiumLoader';
 
 export const AuthCallback: React.FC = () => {
     const [searchParams] = useSearchParams();
@@ -28,18 +29,5 @@ export const AuthCallback: React.FC = () => {
         }
     }, [searchParams, login, navigate]);
 
-    return (
-        <div style={{
-            height: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'var(--color-void-950)',
-            color: 'var(--color-gold-500)',
-            fontFamily: 'var(--font-primary)',
-            fontSize: '1.5rem'
-        }}>
-            Authenticating with the Void...
-        </div>
-    );
+    return <PremiumLoader text="Authenticating with the Void..." />;
 };

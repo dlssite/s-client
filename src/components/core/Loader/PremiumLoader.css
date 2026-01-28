@@ -1,0 +1,132 @@
+.premium-loader-ritual {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-void-deep, #020202);
+    overflow: hidden;
+}
+
+.ritual-background-fx {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(138, 28, 28, 0.15) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ritual-vessel {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.essence-flame {
+    width: 180px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+    animation: floating 4s ease-in-out infinite;
+}
+
+.essence-glow {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 2;
+    animation: breathing 3s ease-in-out infinite;
+}
+
+.materialization-status {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: -20px;
+    z-index: 2;
+}
+
+.burning-bar-container {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full, 9999px);
+    overflow: hidden;
+    position: relative;
+}
+
+.burning-bar-fill {
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(90deg, var(--color-crimson-500, #dc2626), var(--color-primary-500, #f97316));
+    box-shadow: 0 0 10px var(--color-primary-500, #f97316);
+    border-radius: var(--radius-full, 9999px);
+    animation: loading-fill 3s ease-in-out infinite alternate;
+}
+
+.ritual-text {
+    font-family: var(--font-display);
+    color: var(--color-gold-500);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .ritual-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+    }
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+}
+
+@keyframes loading-fill {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

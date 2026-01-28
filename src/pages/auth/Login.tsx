@@ -44,8 +44,8 @@ export const Login: React.FC = () => {
                     variant="primary"
                     style={{ width: '100%', padding: '1.5rem', fontSize: '1.1rem' }}
                     onClick={() => {
-                        const authUrl = import.meta.env.VITE_AUTH_URL || 'http://localhost:4000';
-                        window.location.href = `${authUrl}/api/v1/auth/providers/discord/login`;
+                        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+                        window.location.href = `${apiUrl}/api/auth/providers/discord/login`;
                     }}
                 >
                     Login with Discord

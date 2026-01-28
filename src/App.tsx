@@ -11,6 +11,7 @@ import { Achievements } from './pages/dashboard/Achievements';
 import { Apps } from './pages/dashboard/Apps';
 import { ProfileSettings } from './pages/settings/ProfileSettings';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { PublicRoute } from './components/PublicRoute';
 import { AuthCallback } from './pages/auth/AuthCallback';
 import { NotFound } from './pages/NotFound';
 
@@ -33,10 +34,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route element={<PublicRoute />}>
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+          </Route>
         </Route>
 
         <Route element={<ProtectedRoute />}>
