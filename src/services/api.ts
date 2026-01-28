@@ -42,8 +42,12 @@ api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
 
-        // If error is not 401 or request already retried, reject
-        if (error.response?.status !== 401 || originalRequest._retry) {
+        // If error is not 401, or already retried, OR if it's the refresh token endpoint itself failing, reject
+        if (
+            error.response?.status !== 401 ||
+            originalRequest._retry ||
+            originalRequest.url?.includes('/api/auth/refresh-token')
+        ) {
             return Promise.reject(error);
         }
 
@@ -63,7 +67,8 @@ api.interceptors.response.use(
         isRefreshing = true;
 
         try {
-            const response = await api.post('/api/auth/refresh-token', {});
+            console.log('[API Interceptor] Token expired, attempting refresh...');
+            const response = await api.post('/api/auth/refresh-token', {}, { withCredentials: true });
             const { accessToken } = response.data;
 
             if (accessToken) {

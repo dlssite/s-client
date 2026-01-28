@@ -24,49 +24,53 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Attempt to refresh token on mount
     useEffect(() => {
         const initAuth = async () => {
-            const existingToken = authService.getToken();
+            try {
+                const existingToken = authService.getToken();
 
-            // Priority 1: If we have an existing token, try to validate it FIRST
-            if (existingToken) {
+                // Priority 1: If we have an existing token, try to validate it FIRST
+                if (existingToken) {
+                    try {
+                        console.log('[AuthContext] Validating existing access token...');
+                        const meResponse = await api.get('/api/me');
+                        if (meResponse.data) {
+                            console.log('[AuthContext] ✅ Existing token is valid');
+                            const identity = meResponse.data.identity;
+                            setUser({
+                                id: identity?.username || 'user',
+                                email: identity?.email || 'user@sanctyr.space'
+                            });
+                            return;
+                        }
+                    } catch (validateError) {
+                        console.log('[AuthContext] Existing token is invalid, attempting refresh...');
+                    }
+                }
+
+                // Priority 2: Try to refresh token via HttpOnly Cookie
                 try {
-                    console.log('[AuthContext] Validating existing access token...');
-                    const meResponse = await api.get('/api/me');
-                    if (meResponse.data) {
-                        console.log('[AuthContext] ✅ Existing token is valid');
-                        setUser({
-                            id: meResponse.data.identity?.username || 'user',
-                            email: 'user@sanctyr.space'
-                        });
-                        setIsLoading(false);
+                    console.log('[AuthContext] Attempting refresh-token via cookie...');
+                    const response = await api.post('/api/auth/refresh-token', {});
+                    const { accessToken, user: userData } = response.data;
+
+                    if (accessToken && userData) {
+                        console.log('[AuthContext] ✅ Refresh success for:', userData.email);
+                        authService.setToken(accessToken);
+                        setUser(userData);
                         return;
                     }
-                } catch (validateError) {
-                    console.log('[AuthContext] Existing token is invalid, attempting refresh...');
+                } catch (error: any) {
+                    console.log('[AuthContext] Refresh/Validate failed:', error.response?.data?.message || error.message);
                 }
+
+                // Priority 3: No valid session found
+                console.log('[AuthContext] No valid session, clearing state');
+                authService.removeToken();
+                setUser(null);
+            } catch (err) {
+                console.error('[AuthContext] Serious initialization error:', err);
+            } finally {
+                setIsLoading(false);
             }
-
-            // Priority 2: Try to refresh token via HttpOnly Cookie
-            try {
-                console.log('[AuthContext] Attempting refresh-token via cookie...');
-                const response = await api.post('/api/auth/refresh-token', {});
-                const { accessToken, user: userData } = response.data;
-
-                if (accessToken && userData) {
-                    console.log('[AuthContext] ✅ Refresh success for:', userData.email);
-                    authService.setToken(accessToken);
-                    setUser(userData);
-                    setIsLoading(false);
-                    return;
-                }
-            } catch (error: any) {
-                console.log('[AuthContext] Refresh/Validate failed:', error.response?.data?.message || error.message);
-            }
-
-            // Priority 3: No valid session found
-            console.log('[AuthContext] No valid session, clearing state');
-            authService.removeToken();
-            setUser(null);
-            setIsLoading(false);
         };
 
         initAuth();

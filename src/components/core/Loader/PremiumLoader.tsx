@@ -5,7 +5,7 @@ interface PremiumLoaderProps {
     text?: string;
 }
 
-export const PremiumLoader: React.FC<PremiumLoaderProps> = ({ text = "Materializing Identity..." }) => {
+export const PremiumLoader: React.FC<PremiumLoaderProps> = ({ text = "Communing with the Void..." }) => {
     return (
         <div className="premium-loader-ritual">
             <div className="ritual-background-fx"></div>
